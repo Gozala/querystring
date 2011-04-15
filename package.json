@@ -1,4 +1,5 @@
 { "name": "querystring",
+  "id": "querystring",
   "version": "0.0.1",
   "description": "Node's querystring module for all engines.",
   "keywords": [ "query", "querystring" ],
@@ -25,7 +26,7 @@
     "teleport": ">=0.2.0"
   },
   "scripts": {
-    "test": "node test/test-querystring.js"
+    "test": "node tests/test-querystring.js"
   },
   "licenses": [
     {
