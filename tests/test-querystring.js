@@ -93,58 +93,67 @@ var qsNoMungeTestCases = [
 
 exports['test basic'] = function(assert) {
   assert.strictEqual('918854443121279438895193',
-                   qs.parse('id=918854443121279438895193').id);
+                   qs.parse('id=918854443121279438895193').id,
+                   'prase id=918854443121279438895193');
 };
 
-// test that the canonical qs is parsed properly.
 exports['test that the canonical qs is parsed properly'] = function(assert) {
   qsTestCases.forEach(function(testCase) {
-    assert.deepEqual(testCase[2], qs.parse(testCase[0]));
+    assert.deepEqual(testCase[2], qs.parse(testCase[0]),
+                     'parse ' + testCase[0]);
   });
 };
 
 
 exports['test that the colon test cases can do the same'] = function(assert) {
   qsColonTestCases.forEach(function(testCase) {
-    assert.deepEqual(testCase[2], qs.parse(testCase[0], ';', ':'));
+    assert.deepEqual(testCase[2], qs.parse(testCase[0], ';', ':'),
+                     'parse ' + testCase[0] + ' -> ; :');
   });
 };
 
 exports['test the weird objects, that they get parsed properly'] = function(assert) {
   qsWeirdObjects.forEach(function(testCase) {
-    assert.deepEqual(testCase[2], qs.parse(testCase[1]));
+    assert.deepEqual(testCase[2], qs.parse(testCase[1]),
+                     'parse ' + testCase[1]);
   });
 };
 
 exports['test non munge test cases'] = function(assert) {
   qsNoMungeTestCases.forEach(function(testCase) {
-    assert.deepEqual(testCase[0], qs.stringify(testCase[1], '&', '=', false));
+    assert.deepEqual(testCase[0], qs.stringify(testCase[1], '&', '=', false),
+                     'stringify ' + JSON.stringify(testCase[1]) + ' -> & =');
   });
 };
 
 exports['test the nested qs-in-qs case'] = function(assert) {
   var f = qs.parse('a=b&q=x%3Dy%26y%3Dz');
   f.q = qs.parse(f.q);
-  assert.deepEqual(f, { a: 'b', q: { x: 'y', y: 'z' } });
+  assert.deepEqual(f, { a: 'b', q: { x: 'y', y: 'z' } },
+                   'parse a=b&q=x%3Dy%26y%3Dz');
 };
 
 exports['test nested in colon'] = function(assert) {
   var f = qs.parse('a:b;q:x%3Ay%3By%3Az', ';', ':');
   f.q = qs.parse(f.q, ';', ':');
-  assert.deepEqual(f, { a: 'b', q: { x: 'y', y: 'z' } });
+  assert.deepEqual(f, { a: 'b', q: { x: 'y', y: 'z' } },
+                   'parse a:b;q:x%3Ay%3By%3Az -> ; :');
 };
 
 exports['test stringifying'] = function(assert) {
   qsTestCases.forEach(function(testCase) {
-    assert.equal(testCase[1], qs.stringify(testCase[2]));
+    assert.equal(testCase[1], qs.stringify(testCase[2]),
+                 'stringify ' + JSON.stringify(testCase[2]));
   });
 
   qsColonTestCases.forEach(function(testCase) {
-    assert.equal(testCase[1], qs.stringify(testCase[2], ';', ':'));
+    assert.equal(testCase[1], qs.stringify(testCase[2], ';', ':'),
+                 'stringify ' + JSON.stringify(testCase[2]) + ' -> ; :');
   });
 
   qsWeirdObjects.forEach(function(testCase) {
-    assert.equal(testCase[1], qs.stringify(testCase[0]));
+    assert.equal(testCase[1], qs.stringify(testCase[0]),
+                 'stringify ' + JSON.stringify(testCase[0]));
   });
 };
 
@@ -156,7 +165,14 @@ exports['test stringifying nested'] = function(assert) {
       y: 'z'
     })
   });
-  assert.equal(f, 'a=b&q=x%3Dy%26y%3Dz');
+  assert.equal(f, 'a=b&q=x%3Dy%26y%3Dz',
+               JSON.stringify({
+                  a: 'b',
+                  'qs.stringify -> q': {
+                    x: 'y',
+                    y: 'z'
+                  }
+                }));
 
   var threw = false;
   try { qs.parse(undefined); } catch(error) { threw = true; }
@@ -171,10 +187,17 @@ exports['test nested in colon'] = function(assert) {
       y: 'z'
     }, ';', ':')
   }, ';', ':');
-  assert.equal(f, 'a:b;q:x%3Ay%3By%3Az');
+  assert.equal(f, 'a:b;q:x%3Ay%3By%3Az',
+               'stringify ' + JSON.stringify({
+                  a: 'b',
+                  'qs.stringify -> q': {
+                    x: 'y',
+                    y: 'z'
+                  }
+                }) + ' -> ; : ');
 
 
-  assert.deepEqual({}, qs.parse());
+  assert.deepEqual({}, qs.parse(), 'parse undefined');
 };
 
 require("test").run(exports);
