@@ -1,6 +1,6 @@
 { "name": "querystring",
   "id": "querystring",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Node's querystring module for all engines.",
   "keywords": [ "commonjs", "query", "querystring" ],
   "author": "Irakli Gozalishvili <rfobic@gmail.com>",
@@ -18,7 +18,7 @@
     "test": "./test"
   },
   "devDependencies": {
-    "test": ">=0.0.10"
+    "test": ">=0.4.0"
   },
   "main": "./lib/querystring.js",
   "engines": {
@@ -27,11 +27,5 @@
   },
   "scripts": {
     "test": "node tests/test-querystring.js"
-  },
-  "licenses": [
-    {
-      "type" : "MPL 1.1/LGPL 2.1/GPL 2.0",
-      "url" : "http://www.mozilla.org/MPL/"
-    }
-  ]
+  }
 }
