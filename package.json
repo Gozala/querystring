@@ -1,4 +1,5 @@
-{ "name": "querystring",
+{
+  "name": "querystring",
   "id": "querystring",
   "version": "0.0.4",
   "description": "Node's querystring module for all engines.",
@@ -10,20 +11,14 @@
     "web": "https://github.com/Gozala/querystring"
   },
   "bugs": {
-    "web": "http://github.com/Gozala/querystring/issues/"
-  },
-  "directories": {
-    "doc": "./docs",
-    "lib": "./lib",
-    "test": "./test"
+    "url": "http://github.com/Gozala/querystring/issues/"
   },
   "devDependencies": {
-    "test": ">=0.4.0"
+    "test": ">=0.4.3"
   },
-  "main": "./lib/querystring.js",
+  "main": "./querystring.js",
   "engines": {
-    "node": "0.4.x",
-    "teleport": ">=0.2.0"
+    "node": ">=0.4.x"
   },
   "scripts": {
     "test": "node tests/test-querystring.js"
