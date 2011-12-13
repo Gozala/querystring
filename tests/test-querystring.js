@@ -22,7 +22,7 @@
 "use strict";
 
 // test using assert
-var qs = require('querystring');
+var qs = require('../querystring');
 
 // folding block, commented to pass gjslint
 // {{{
