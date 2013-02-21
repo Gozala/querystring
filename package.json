@@ -16,7 +16,6 @@
   "devDependencies": {
     "test": ">=0.4.3"
   },
-  "main": "./querystring.js",
   "engines": {
     "node": ">=0.4.x"
   },
