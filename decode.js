@@ -69,7 +69,7 @@ module.exports = function(qs, sep, eq, options) {
 
     if (!hasOwnProperty(obj, k)) {
       obj[k] = v;
-    } else if (Array.isArray(obj[k])) {
+    } else if (isArray(obj[k])) {
       obj[k].push(v);
     } else {
       obj[k] = [obj[k], v];
@@ -77,4 +77,8 @@ module.exports = function(qs, sep, eq, options) {
   }
 
   return obj;
+};
+
+var isArray = Array.isArray || function (xs) {
+  return Object.prototype.toString.call(xs) === '[object Array]';
 };

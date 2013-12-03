@@ -45,9 +45,9 @@ module.exports = function(obj, sep, eq, name) {
   }
 
   if (typeof obj === 'object') {
-    return Object.keys(obj).map(function(k) {
+    return map(objectKeys(obj), function(k) {
       var ks = encodeURIComponent(stringifyPrimitive(k)) + eq;
-      if (Array.isArray(obj[k])) {
+      if (isArray(obj[k])) {
         return obj[k].map(function(v) {
           return ks + encodeURIComponent(stringifyPrimitive(v));
         }).join(sep);
@@ -61,4 +61,25 @@ module.exports = function(obj, sep, eq, name) {
   if (!name) return '';
   return encodeURIComponent(stringifyPrimitive(name)) + eq +
          encodeURIComponent(stringifyPrimitive(obj));
+};
+
+var isArray = Array.isArray || function (xs) {
+  return Object.prototype.toString.call(xs) === '[object Array]';
+};
+
+function map (xs, f) {
+  if (xs.map) return xs.map(f);
+  var res = [];
+  for (var i = 0; i < xs.length; i++) {
+    res.push(f(xs[i], i));
+  }
+  return res;
+}
+
+var objectKeys = Object.keys || function (obj) {
+  var res = [];
+  for (var key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) res.push(key);
+  }
+  return res;
 };
