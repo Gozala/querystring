@@ -208,3 +208,29 @@ exports['test nested in colon'] = function(assert) {
 
   assert.deepEqual({}, qs.parse(), 'parse undefined');
 };
+
+exports['test stringify() with escape() override'] = function(assert) {
+  var original = qs.escape;
+  qs.escape = function (value) { return value; };
+  var f = qs.stringify({a: 'a :'});
+  assert.equal(f, 'a=a :' , 'stringify with escape() override"');
+  qs.escape = original;
+};
+
+exports['test escape()'] = function(assert) {
+  var f = qs.escape('a :');
+  assert.equal(f, 'a%20%3A', 'escape "a :"');
+};
+
+exports['test parse() with unescape() override'] = function(assert) {
+  var original = qs.unescape;
+  qs.unescape = function (value) { return 'static'; };
+  var f = qs.parse('a=a :');
+  assert.deepEqual(f, {static: 'static'}, 'unescape "a :" with override"');
+  qs.unescape = original;
+};
+
+exports['test unescape()'] = function(assert) {
+  var f = qs.unescape('a%20%3A');
+  assert.equal(f, 'a :', 'unescape "a :"');
+};
