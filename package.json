@@ -13,6 +13,7 @@
   "bugs": {
     "url": "http://github.com/Gozala/querystring/issues/"
   },
+  "main": "index.js",
   "devDependencies": {
     "test": "~0.x.0",
     "phantomify": "~0.x.0",
