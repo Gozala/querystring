@@ -48,6 +48,7 @@ module.exports = function(obj, sep, eq, name) {
     return Object.keys(obj).map(function(k) {
       var ks = encodeURIComponent(stringifyPrimitive(k)) + eq;
       if (Array.isArray(obj[k])) {
+        ks = encodeURIComponent(stringifyPrimitive(k)) + '[]' + eq;
         return obj[k].map(function(v) {
           return ks + encodeURIComponent(stringifyPrimitive(v));
         }).join(sep);
