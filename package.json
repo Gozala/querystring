@@ -19,6 +19,11 @@
     "retape": "~0.x.0",
     "tape": "~0.1.5"
   },
+  "files": [
+    "index.js",
+    "encode.js",
+    "decode.js"
+  ],
   "engines": {
     "node": ">=0.4.x"
   },
