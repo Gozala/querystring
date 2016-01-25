@@ -5,6 +5,7 @@
   "description": "Node's querystring module for all engines.",
   "keywords": [ "commonjs", "query", "querystring" ],
   "author": "Irakli Gozalishvili <rfobic@gmail.com>",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/Gozala/querystring.git",
