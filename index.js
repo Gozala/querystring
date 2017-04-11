@@ -1,4 +1,13 @@
 'use strict';
 
-exports.decode = exports.parse = require('./decode');
-exports.encode = exports.stringify = require('./encode');
+module.exports = (function () {
+	var methods = {};
+
+	methods.decode = methods.parse = require('./decode');
+	methods.encode = methods.stringify = require('./encode');
+	methods.escape = require('./escape');
+	methods.unescape = require('./unescape');
+
+	return methods;
+}());
+

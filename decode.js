@@ -64,8 +64,8 @@ module.exports = function(qs, sep, eq, options) {
       vstr = '';
     }
 
-    k = decodeURIComponent(kstr);
-    v = decodeURIComponent(vstr);
+    k = this.unescape(kstr);
+    v = this.unescape(vstr);
 
     if (!hasOwnProperty(obj, k)) {
       obj[k] = v;
