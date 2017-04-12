@@ -21,6 +21,11 @@
 
 'use strict';
 
+var shims = require('./shims.js');
+var map = shims.map;
+var objectKeys = shims.objectKeys;
+var isArray = shims.isArray;
+
 var stringifyPrimitive = function(v) {
   switch (typeof v) {
     case 'string':
@@ -45,10 +50,10 @@ module.exports = function(obj, sep, eq, name) {
   }
 
   if (typeof obj === 'object') {
-    return Object.keys(obj).map(function(k) {
+    return map(objectKeys(obj), function(k) {
       var ks = encodeURIComponent(stringifyPrimitive(k)) + eq;
-      if (Array.isArray(obj[k])) {
-        return obj[k].map(function(v) {
+      if (isArray(obj[k])) {
+        return map(obj[k], function(v) {
           return ks + encodeURIComponent(stringifyPrimitive(v));
         }).join(sep);
       } else {

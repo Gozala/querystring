@@ -21,6 +21,10 @@
 
 'use strict';
 
+var shims = require('./shims.js');
+var indexOf = shims.indexOf;
+var isArray = shims.isArray;
+
 // If obj.hasOwnProperty has been overridden, then calling
 // obj.hasOwnProperty(prop) will break.
 // See: https://github.com/joyent/node/issues/1707
@@ -53,7 +57,7 @@ module.exports = function(qs, sep, eq, options) {
 
   for (var i = 0; i < len; ++i) {
     var x = qs[i].replace(regexp, '%20'),
-        idx = x.indexOf(eq),
+        idx = indexOf(x, eq),
         kstr, vstr, k, v;
 
     if (idx >= 0) {
@@ -69,7 +73,7 @@ module.exports = function(qs, sep, eq, options) {
 
     if (!hasOwnProperty(obj, k)) {
       obj[k] = v;
-    } else if (Array.isArray(obj[k])) {
+    } else if (isArray(obj[k])) {
       obj[k].push(v);
     } else {
       obj[k] = [obj[k], v];
