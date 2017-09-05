@@ -3,6 +3,7 @@
   "id": "querystring",
   "version": "0.2.0",
   "description": "Node's querystring module for all engines.",
+  "types": "index.d.ts",
   "keywords": [ "commonjs", "query", "querystring" ],
   "author": "Irakli Gozalishvili <rfobic@gmail.com>",
   "repository": {
