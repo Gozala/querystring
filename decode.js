@@ -64,8 +64,17 @@ module.exports = function(qs, sep, eq, options) {
       vstr = '';
     }
 
-    k = decodeURIComponent(kstr);
-    v = decodeURIComponent(vstr);
+    try {
+        k = decodeURIComponent(kstr);
+    } catch (e) {
+      continue;
+    }
+
+    try {
+      v = decodeURIComponent(vstr);
+    } catch (e) {
+      v = '';
+    }
 
     if (!hasOwnProperty(obj, k)) {
       obj[k] = v;
