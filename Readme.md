@@ -1,3 +1,5 @@
+# Status: [Maintiner Needed](https://github.com/Gozala/querystring/issues/29)
+
 # querystring
 
 [![Build Status](https://secure.travis-ci.org/Gozala/querystring.png)](http://travis-ci.org/Gozala/querystring)
