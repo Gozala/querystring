@@ -15,3 +15,7 @@ Node's querystring module for all engines.
 
     npm install querystring
 
+
+## Usage ##
+
+Refer to [Node's documentation for `querystring`](https://nodejs.org/api/querystring.html).
