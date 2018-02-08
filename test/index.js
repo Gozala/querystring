@@ -100,6 +100,11 @@ var qsNoMungeTestCases = [
   ['trololol=yes&lololo=no', {'trololol': 'yes', 'lololo': 'no'}]
 ];
 
+var stringifyTestCases = [
+  ['', {'foo': []}],
+  ['bar=baz', {'foo': [], bar: 'baz'}],
+]
+
 exports['test basic'] = function(assert) {
   assert.strictEqual('918854443121279438895193',
                    qs.parse('id=918854443121279438895193').id,
@@ -153,6 +158,11 @@ exports['test stringifying'] = function(assert) {
   qsTestCases.forEach(function(testCase) {
     assert.equal(testCase[1], qs.stringify(testCase[2]),
                  'stringify ' + JSON.stringify(testCase[2]));
+  });
+
+  stringifyTestCases.forEach(function(testCase) {
+    assert.equal(testCase[0], qs.stringify(testCase[1]),
+                 'stringify ' + JSON.stringify(testCase[1]));
   });
 
   qsColonTestCases.forEach(function(testCase) {
