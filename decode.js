@@ -44,6 +44,7 @@ module.exports = function(qs, sep, eq, options) {
   if (options && typeof options.maxKeys === 'number') {
     maxKeys = options.maxKeys;
   }
+  var decodeURIComponentFunc = options && options.decodeURIComponent ? options.decodeURIComponent : decodeURIComponent;
 
   var len = qs.length;
   // maxKeys <= 0 means that we should not limit keys count
@@ -64,8 +65,8 @@ module.exports = function(qs, sep, eq, options) {
       vstr = '';
     }
 
-    k = decodeURIComponent(kstr);
-    v = decodeURIComponent(vstr);
+    k = decodeURIComponentFunc(kstr);
+    v = decodeURIComponentFunc(vstr);
 
     if (!hasOwnProperty(obj, k)) {
       obj[k] = v;
