@@ -38,6 +38,7 @@ module.exports = function(qs, sep, eq, options) {
   }
 
   var regexp = /\+/g;
+  qs = encodeURI(qs)
   qs = qs.split(sep);
 
   var maxKeys = 1000;
