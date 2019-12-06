@@ -28,6 +28,14 @@ function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 
+function safeDecodeURIComponent(value) {
+  try {
+    return decodeURIComponent(value)
+  } catch (e) {
+    return value
+  }
+}
+
 module.exports = function(qs, sep, eq, options) {
   sep = sep || '&';
   eq = eq || '=';
@@ -38,7 +46,6 @@ module.exports = function(qs, sep, eq, options) {
   }
 
   var regexp = /\+/g;
-  qs = encodeURI(qs)
   qs = qs.split(sep);
 
   var maxKeys = 1000;
@@ -65,8 +72,8 @@ module.exports = function(qs, sep, eq, options) {
       vstr = '';
     }
 
-    k = decodeURIComponent(kstr);
-    v = decodeURIComponent(vstr);
+    k = safeDecodeURIComponent(kstr);
+    v = safeDecodeURIComponent(vstr);
 
     if (!hasOwnProperty(obj, k)) {
       obj[k] = v;
