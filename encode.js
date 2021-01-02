@@ -75,8 +75,6 @@ module.exports = function (obj, sep, eq, name) {
 
   if (!name) return '';
   return (
-    encodeURIComponent(stringifyPrimitive(name)) +
-    eq +
-    encodeURIComponent(stringifyPrimitive(obj))
+    encodeURIComponent(stringifyPrimitive(name)) + eq + encodeURIComponent(stringifyPrimitive(obj))
   );
 };

@@ -16,13 +16,13 @@ const sepratorCharacter = '&';
 const equalCharacter = '=';
 
 test.each(testCases)('[parse] non-munge %d', (stringified, objectified) => {
-  expect(
-    qs.parse(stringified, sepratorCharacter, equalCharacter, false)
-  ).toStrictEqual(objectified);
+  expect(qs.parse(stringified, sepratorCharacter, equalCharacter, false)).toStrictEqual(
+    objectified
+  );
 });
 
 test.each(testCases)('[stringify] non-munge %d', (stringified, objectified) => {
-  expect(
-    qs.stringify(objectified, sepratorCharacter, equalCharacter, false)
-  ).toStrictEqual(stringified);
+  expect(qs.stringify(objectified, sepratorCharacter, equalCharacter, false)).toStrictEqual(
+    stringified
+  );
 });

@@ -23,9 +23,6 @@ test.each(testCases)('[parse] weird-objects %d', (_, stringified, objectified) =
   expect(qs.parse(stringified)).toStrictEqual(objectified);
 });
 
-test.each(testCases)(
-  '[stringify] weird-objects %d',
-  (_, stringified, objectified) => {
-    expect(qs.stringify(objectified)).toStrictEqual(stringified);
-  }
-);
+test.each(testCases)('[stringify] weird-objects %d', (_, stringified, objectified) => {
+  expect(qs.stringify(objectified)).toStrictEqual(stringified);
+});
