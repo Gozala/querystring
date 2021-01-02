@@ -21,14 +21,31 @@
 
 'use strict';
 
-// If obj.hasOwnProperty has been overridden, then calling
-// obj.hasOwnProperty(prop) will break.
-// See: https://github.com/joyent/node/issues/1707
+/**
+ * If obj.hasOwnProperty has been overridden, then calling
+ * obj.hasOwnProperty(prop) will break.
+ * See: https://github.com/joyent/node/issues/1707
+ *
+ * @param {*} obj
+ * @param {*} prop
+ * @returns
+ */
 function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 
-module.exports = function(qs, sep, eq, options) {
+/**
+ * parses a URL query string into a collection of key and value pairs
+ *
+ * @param {string}   [qs] The URL query string to parse
+ * @param {string}   [sep='&'] The substring used to delimit key and value pairs in the query string
+ * @param {string}   [eq] The substring used to delimit keys and values in the query string
+ * @param {object}   [options]
+ * @param {function} [options.decodeURIComponent=querystring.unescape()] The function to use when decoding percent-encoded characters in the query string
+ * @param {number}   [options.maxKeys=1000] Specifies the maximum number of keys to parse. Specify 0 to remove key counting limitations
+ * @returns {object}
+ */
+module.exports = function (qs, sep, eq, options) {
   sep = sep || '&';
   eq = eq || '=';
   var obj = {};
@@ -53,8 +70,11 @@ module.exports = function(qs, sep, eq, options) {
 
   for (var i = 0; i < len; ++i) {
     var x = qs[i].replace(regexp, '%20'),
-        idx = x.indexOf(eq),
-        kstr, vstr, k, v;
+      idx = x.indexOf(eq),
+      kstr,
+      vstr,
+      k,
+      v;
 
     if (idx >= 0) {
       kstr = x.substr(0, idx);

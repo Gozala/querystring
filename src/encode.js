@@ -21,7 +21,7 @@
 
 'use strict';
 
-var stringifyPrimitive = function(v) {
+var stringifyPrimitive = function (v) {
   switch (typeof v) {
     case 'string':
       return v;
@@ -37,7 +37,18 @@ var stringifyPrimitive = function(v) {
   }
 };
 
-module.exports = function(obj, sep, eq, name) {
+/**
+ * It serializes passed object into string
+ * The numeric values must be finite.
+ * Any other input values will be coerced to empty strings.
+ *
+ * @param {object}   [obj] The object to serialize into a URL query string
+ * @param {string}   [sep='&'] The substring used to delimit key and value pairs in the query string
+ * @param {string}   [eq] The substring used to delimit keys and values in the query string
+ * @param {*}        [name]
+ * @returns {string}
+ */
+module.exports = function (obj, sep, eq, name) {
   sep = sep || '&';
   eq = eq || '=';
   if (obj === null) {
@@ -45,20 +56,27 @@ module.exports = function(obj, sep, eq, name) {
   }
 
   if (typeof obj === 'object') {
-    return Object.keys(obj).map(function(k) {
-      var ks = encodeURIComponent(stringifyPrimitive(k)) + eq;
-      if (Array.isArray(obj[k])) {
-        return obj[k].map(function(v) {
-          return ks + encodeURIComponent(stringifyPrimitive(v));
-        }).join(sep);
-      } else {
-        return ks + encodeURIComponent(stringifyPrimitive(obj[k]));
-      }
-    }).filter(Boolean).join(sep);
-
+    return Object.keys(obj)
+      .map(function (k) {
+        var ks = encodeURIComponent(stringifyPrimitive(k)) + eq;
+        if (Array.isArray(obj[k])) {
+          return obj[k]
+            .map(function (v) {
+              return ks + encodeURIComponent(stringifyPrimitive(v));
+            })
+            .join(sep);
+        } else {
+          return ks + encodeURIComponent(stringifyPrimitive(obj[k]));
+        }
+      })
+      .filter(Boolean)
+      .join(sep);
   }
 
   if (!name) return '';
-  return encodeURIComponent(stringifyPrimitive(name)) + eq +
-         encodeURIComponent(stringifyPrimitive(obj));
+  return (
+    encodeURIComponent(stringifyPrimitive(name)) +
+    eq +
+    encodeURIComponent(stringifyPrimitive(obj))
+  );
 };
