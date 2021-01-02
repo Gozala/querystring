@@ -1,7 +1,7 @@
 {
   "name": "querystring",
   "id": "querystring",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Node's querystring module for all engines.",
   "author": "Irakli Gozalishvili <rfobic@gmail.com>",
   "license": "MIT",
