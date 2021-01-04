@@ -6,6 +6,8 @@
   "author": "Irakli Gozalishvili <rfobic@gmail.com>",
   "license": "MIT",
   "repository": "Gozala/querystring",
+  "main": "index.js",
+  "typings": "index.d.ts",
   "engines": {
     "node": ">=0.4.x"
   },
