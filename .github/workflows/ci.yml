@@ -1,0 +1,33 @@
+name: CI
+
+on: push
+
+jobs:
+  test:
+    name: Test on Node ${{ matrix.node }} and ${{ matrix.os }}
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node: ["10.x", "12.x", "14.x"]
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Installing Dependencies
+        run: npm install
+
+      - name: Running Tests
+        run: npm test
+
+      - name: Publish
+        if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'ubuntu-latest' && matrix.node == '14.x'
+        run: echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" > ~/.npmrc && npm publish --access public
+        env:
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

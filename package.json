@@ -15,7 +15,6 @@
   },
   "devDependencies": {
     "test": "~0.x.0",
-    "phantomify": "~0.x.0",
     "retape": "~0.x.0",
     "tape": "~0.1.5"
   },
@@ -23,40 +22,9 @@
     "node": ">=0.4.x"
   },
   "scripts": {
-    "test": "npm run test-node && npm run test-browser && npm run test-tap",
-    "test-browser": "node ./node_modules/phantomify/bin/cmd.js ./test/common-index.js",
+    "test": "npm run test-node && npm run test-tap",
     "test-node": "node ./test/common-index.js",
     "test-tap": "node ./test/tap-index.js"
-  },
-  "testling": {
-    "files": "test/tap-index.js",
-    "browsers": {
-      "iexplore": [
-        9,
-        10
-      ],
-      "chrome": [
-        16,
-        20,
-        25,
-        "canary"
-      ],
-      "firefox": [
-        10,
-        15,
-        16,
-        17,
-        18,
-        "nightly"
-      ],
-      "safari": [
-        5,
-        6
-      ],
-      "opera": [
-        12
-      ]
-    }
   },
   "license": "MIT"
 }
