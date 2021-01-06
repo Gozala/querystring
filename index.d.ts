@@ -1,14 +1,5 @@
-type decodeFuncType = (
-  qs?: string,
-  sep?: string,
-  eq?: string,
-  options?: {
-    decodeURIComponent?: Function;
-    maxKeys?: number;
-  }
-) => Record<any, unknown>;
-
-type encodeFuncType = (obj?: Record<any, unknown>, sep?: string, eq?: string, name?: any) => string;
+import decodeFuncType from "./decode";
+import encodeFuncType from "./encode";
 
 export const decode: decodeFuncType;
 export const parse: decodeFuncType;
