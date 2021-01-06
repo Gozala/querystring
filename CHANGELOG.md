@@ -6,13 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
-## [0.2.1] - 2021-01-02
-
-### Changed
-
-- Move to GitHub Actions
-- Improved `README.md`
-
 ## [0.2.0] - 2013-02-21
 
 ### Changed
