@@ -1,7 +1,5 @@
 # querystring
 
-[![GitHub Actions Status](https://github.com/Gozala/querystring/workflows/CI/badge.svg)](https://github.com/Gozala/querystring/actions)
-[![GitHub Legacy Actions Status](https://github.com/Gozala/querystring/workflows/LEGACY/badge.svg)](https://github.com/Gozala/querystring/actions)
 [![NPM](https://img.shields.io/npm/v/querystring.svg)](https://npm.im/querystring)
 [![gzip](https://badgen.net/bundlephobia/minzip/querystring@latest)](https://bundlephobia.com/result?p=querystring@latest)
 
