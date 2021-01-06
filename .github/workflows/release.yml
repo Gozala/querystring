@@ -1,0 +1,36 @@
+name: RELEASE
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    name: Release ${{ matrix.node }} and ${{ matrix.os }}
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node: ["14.x"]
+        os: [ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Installing Dependencies
+        run: npm install
+
+      - name: Running Tests
+        run: npm test
+
+      - name: Publish
+        if: startsWith(github.ref, 'refs/tags/')
+        run: echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" > ~/.npmrc && npm publish --access public
+        env:
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
