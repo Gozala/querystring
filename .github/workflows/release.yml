@@ -7,13 +7,8 @@ on:
 
 jobs:
   test:
-    name: Release ${{ matrix.node }} and ${{ matrix.os }}
-
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        node: ["14.x"]
-        os: [ubuntu-latest]
+    name: Release
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
@@ -21,7 +16,8 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 14.x
+          registry-url: https://registry.npmjs.org
 
       - name: Installing Dependencies
         run: npm install
@@ -29,7 +25,7 @@ jobs:
       - name: Running Tests
         run: npm test
 
-      - name: Publish
-        run: echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" > ~/.npmrc && npm publish --access public
+      - name: Publishing to NPM
         env:
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+        run: npm publish
