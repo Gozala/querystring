@@ -13,6 +13,8 @@ _If you want to help with evolution of this package, please see https://github.c
 npm i querystring
 ```
 
+#### Not npm install query-string!!!!!
+
 ## 📖 Documentation
 
 Refer to [Node's documentation for `querystring`](https://nodejs.org/api/querystring.html).
