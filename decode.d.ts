@@ -15,6 +15,6 @@ export type decodeFuncType = (
     decodeURIComponent?: Function;
     maxKeys?: number;
   }
-) => Record<any, unknown>;
+) => Record<string, string|string[]>;
 
 export default decodeFuncType;
