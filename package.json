@@ -12,11 +12,11 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/Gozala/querystring.git",
+    "url": "git+https://github.com/Gozala/querystring.git",
     "web": "https://github.com/Gozala/querystring"
   },
   "bugs": {
-    "url": "http://github.com/Gozala/querystring/issues/"
+    "url": "https://github.com/Gozala/querystring/issues/"
   },
   "devDependencies": {
     "test": "~0.x.0",
