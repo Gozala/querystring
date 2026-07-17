@@ -108,7 +108,7 @@ var stringifyTestCases = [
 exports['test basic'] = function(assert) {
   assert.strictEqual('918854443121279438895193',
                    qs.parse('id=918854443121279438895193').id,
-                   'prase id=918854443121279438895193');
+                   'parse id=918854443121279438895193');
 };
 
 exports['test that the canonical qs is parsed properly'] = function(assert) {
